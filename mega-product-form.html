@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Mega Data Entry Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      background: #f7fafd;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .container {
+      background: #fff;
+      margin: 40px 0;
+      box-shadow: 0 6px 32px rgba(60,72,100,0.12), 0 1.5px 4px rgba(60,72,100,0.12);
+      border-radius: 16px;
+      padding: 32px 40px;
+      max-width: 900px;
+      width: 100%;
+    }
+    h2 {
+      text-align: center;
+      color: #2866e4;
+      margin-bottom: 24px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .form-row {
+      display: flex;
+      gap: 32px;
+    }
+    .form-col {
+      flex: 1;
+      min-width: 0;
+    }
+    form label {
+      display: block;
+      font-size: 1rem;
+      margin-top: 18px;
+      margin-bottom: 6px;
+      color: #313e5b;
+      font-weight: 500;
+    }
+    form input[type="text"],
+    form input[type="date"],
+    form textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid #e3e8f0;
+      border-radius: 6px;
+      font-size: 1rem;
+      background: #f8fafc;
+      transition: border-color 0.2s;
+      resize: vertical;
+      min-height: 40px;
+      box-sizing: border-box;
+    }
+    form input[type="text"]:focus,
+    form input[type="date"]:focus,
+    form textarea:focus {
+      border-color: #2866e4;
+      background: #fff;
+      outline: none;
+    }
+    form textarea {
+      min-height: 60px;
+      max-height: 160px;
+    }
+    .form-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 28px;
+      gap: 10px;
+    }
+    .form-buttons button {
+      flex: 1;
+      background: linear-gradient(90deg, #2866e4 60%, #5145cd 100%);
+      color: #fff;
+      padding: 12px 0;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      box-shadow: 0 2px 12px rgba(40,102,228,0.12);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.12s;
+      letter-spacing: 1px;
+    }
+    .form-buttons button[disabled] {
+      background: #e3e8f0;
+      color: #b0b0b0;
+      cursor: default;
+    }
+    .form-buttons button:not([disabled]):hover {
+      background: linear-gradient(90deg, #5145cd 30%, #2866e4 100%);
+      transform: translateY(-2px) scale(1.01);
+    }
+    .step-indicator {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 28px;
+      margin-bottom: 0;
+    }
+    .step-indicator span {
+      width: 25px;
+      height: 25px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #e3e8f0;
+      color: #888;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .step-indicator .active {
+      background: #2866e4;
+      color: #fff;
+    }
+    @media (max-width: 900px) {
+      .container {
+        padding: 20px 10px;
+        max-width: 98vw;
+      }
+      .form-row {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 1.2rem;
+      }
+      .form-buttons button {
+        font-size: 1rem;
+        padding: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Product Mega Data Entry Form</h2>
+    <form id="megaForm">
+      <!-- Step 1: Basic Product Info -->
+      <div class="step" id="step-1">
+        <div class="form-row">
+          <div class="form-col">
+            <label for="name">Product Name:</label>
+            <input type="text" id="name" name="name">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description"></textarea>
+            <label for="image_url">Image URL:</label>
+            <input type="text" id="image_url" name="image_url">
+            <label for="brand">Brand:</label>
+            <input type="text" id="brand" name="brand">
+            <label for="brand_logo">Brand Logo:</label>
+            <input type="text" id="brand_logo" name="brand_logo">
+            <label for="sku">SKU:</label>
+            <input type="text" id="sku" name="sku">
+            <label for="mpn">MPN:</label>
+            <input type="text" id="mpn" name="mpn">
+            <label for="gtin13">GTIN13:</label>
+            <input type="text" id="gtin13" name="gtin13">
+          </div>
+          <div class="form-col">
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category">
+            <label for="ingredients">Ingredients:</label>
+            <input type="text" id="ingredients" name="ingredients">
+            <label for="net_quantity">Net Quantity:</label>
+            <input type="text" id="net_quantity" name="net_quantity">
+            <label for="discount">Discount:</label>
+            <input type="text" id="discount" name="discount">
+            <label for="manufacturer_name">Manufacturer Name:</label>
+            <input type="text" id="manufacturer_name" name="manufacturer_name">
+            <label for="manufacturer_logo">Manufacturer Logo:</label>
+            <input type="text" id="manufacturer_logo" name="manufacturer_logo">
+            <label for="suitable_for">Suitable For:</label>
+            <input type="text" id="suitable_for" name="suitable_for">
+            <label for="production_date">Production Date:</label>
+            <input type="date" id="production_date" name="production_date">
+            <label for="expiration_date">Expiration Date:</label>
+            <input type="date" id="expiration_date" name="expiration_date">
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Variant 1 -->
+      <div class="step" id="step-2" style="display:none;">
+        <div class="form-row">
+          <div class="form-col">
+            <label for="variant1_name">Variant 1 Name:</label>
+            <input type="text" id="variant1_name" name="variant1_name">
+            <label for="variant1_sku">Variant 1 SKU:</label>
+            <input type="text" id="variant1_sku" name="variant1_sku">
+            <label for="variant1_gtin13">Variant 1 GTIN13:</label>
+            <input type="text" id="variant1_gtin13" name="variant1_gtin13">
+            <label for="variant1_image">Variant 1 Image URL:</label>
+            <input type="text" id="variant1_image" name="variant1_image">
+            <label for="variant1_actual_price">Variant 1 Actual Price:</label>
+            <input type="text" id="variant1_actual_price" name="variant1_actual_price">
+            <label for="variant1_price">Variant 1 Price:</label>
+            <input type="text" id="variant1_price" name="variant1_price">
+            <label for="variant1_url">Variant 1 URL:</label>
+            <input type="text" id="variant1_url" name="variant1_url">
+            <label for="variant1_shippingCountry">Variant 1 Shipping Country:</label>
+            <input type="text" id="variant1_shippingCountry" name="variant1_shippingCountry">
+          </div>
+          <div class="form-col">
+            <label for="variant1_shippingCurrency">Variant 1 Shipping Currency:</label>
+            <input type="text" id="variant1_shippingCurrency" name="variant1_shippingCurrency">
+            <label for="variant1_shippingValue">Variant 1 Shipping Value:</label>
+            <input type="text" id="variant1_shippingValue" name="variant1_shippingValue">
+            <label for="variant1_returnCountry">Variant 1 Return Country:</label>
+            <input type="text" id="variant1_returnCountry" name="variant1_returnCountry">
+            <label for="variant1_returnDays">Variant 1 Return Days:</label>
+            <input type="text" id="variant1_returnDays" name="variant1_returnDays">
+            <label for="variant1_returnMethod">Variant 1 Return Method:</label>
+            <input type="text" id="variant1_returnMethod" name="variant1_returnMethod">
+            <label for="variant1_returnFees">Variant 1 Return Fees:</label>
+            <input type="text" id="variant1_returnFees" name="variant1_returnFees">
+            <label for="variant1_refundType">Variant 1 Refund Type:</label>
+            <input type="text" id="variant1_refundType" name="variant1_refundType">
+            <label for="variant1_acceptedPaymentMethod">Variant 1 Accepted Payment Method:</label>
+            <input type="text" id="variant1_acceptedPaymentMethod" name="variant1_acceptedPaymentMethod">
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Variant 2 -->
+      <div class="step" id="step-3" style="display:none;">
+        <div class="form-row">
+          <div class="form-col">
+            <label for="variant2_name">Variant 2 Name:</label>
+            <input type="text" id="variant2_name" name="variant2_name">
+            <label for="variant2_sku">Variant 2 SKU:</label>
+            <input type="text" id="variant2_sku" name="variant2_sku">
+            <label for="variant2_gtin13">Variant 2 GTIN13:</label>
+            <input type="text" id="variant2_gtin13" name="variant2_gtin13">
+            <label for="variant2_image">Variant 2 Image URL:</label>
+            <input type="text" id="variant2_image" name="variant2_image">
+            <label for="variant2_actual_price">Variant 2 Actual Price:</label>
+            <input type="text" id="variant2_actual_price" name="variant2_actual_price">
+            <label for="variant2_price">Variant 2 Price:</label>
+            <input type="text" id="variant2_price" name="variant2_price">
+            <label for="variant2_url">Variant 2 URL:</label>
+            <input type="text" id="variant2_url" name="variant2_url">
+            <label for="variant2_shippingCountry">Variant 2 Shipping Country:</label>
+            <input type="text" id="variant2_shippingCountry" name="variant2_shippingCountry">
+          </div>
+          <div class="form-col">
+            <label for="variant2_shippingCurrency">Variant 2 Shipping Currency:</label>
+            <input type="text" id="variant2_shippingCurrency" name="variant2_shippingCurrency">
+            <label for="variant2_shippingValue">Variant 2 Shipping Value:</label>
+            <input type="text" id="variant2_shippingValue" name="variant2_shippingValue">
+            <label for="variant2_returnCountry">Variant 2 Return Country:</label>
+            <input type="text" id="variant2_returnCountry" name="variant2_returnCountry">
+            <label for="variant2_returnDays">Variant 2 Return Days:</label>
+            <input type="text" id="variant2_returnDays" name="variant2_returnDays">
+            <label for="variant2_returnMethod">Variant 2 Return Method:</label>
+            <input type="text" id="variant2_returnMethod" name="variant2_returnMethod">
+            <label for="variant2_returnFees">Variant 2 Return Fees:</label>
+            <input type="text" id="variant2_returnFees" name="variant2_returnFees">
+            <label for="variant2_refundType">Variant 2 Refund Type:</label>
+            <input type="text" id="variant2_refundType" name="variant2_refundType">
+            <label for="variant2_acceptedPaymentMethod">Variant 2 Accepted Payment Method:</label>
+            <input type="text" id="variant2_acceptedPaymentMethod" name="variant2_acceptedPaymentMethod">
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4: Variant 3 -->
+      <div class="step" id="step-4" style="display:none;">
+        <div class="form-row">
+          <div class="form-col">
+            <label for="variant3_name">Variant 3 Name:</label>
+            <input type="text" id="variant3_name" name="variant3_name">
+            <label for="variant3_sku">Variant 3 SKU:</label>
+            <input type="text" id="variant3_sku" name="variant3_sku">
+            <label for="variant3_gtin13">Variant 3 GTIN13:</label>
+            <input type="text" id="variant3_gtin13" name="variant3_gtin13">
+            <label for="variant3_image">Variant 3 Image URL:</label>
+            <input type="text" id="variant3_image" name="variant3_image">
+            <label for="variant3_actual_price">Variant 3 Actual Price:</label>
+            <input type="text" id="variant3_actual_price" name="variant3_actual_price">
+            <label for="variant3_price">Variant 3 Price:</label>
+            <input type="text" id="variant3_price" name="variant3_price">
+            <label for="variant3_url">Variant 3 URL:</label>
+            <input type="text" id="variant3_url" name="variant3_url">
+            <label for="variant3_shippingCountry">Variant 3 Shipping Country:</label>
+            <input type="text" id="variant3_shippingCountry" name="variant3_shippingCountry">
+          </div>
+          <div class="form-col">
+            <label for="variant3_shippingCurrency">Variant 3 Shipping Currency:</label>
+            <input type="text" id="variant3_shippingCurrency" name="variant3_shippingCurrency">
+            <label for="variant3_shippingValue">Variant 3 Shipping Value:</label>
+            <input type="text" id="variant3_shippingValue" name="variant3_shippingValue">
+            <label for="variant3_returnCountry">Variant 3 Return Country:</label>
+            <input type="text" id="variant3_returnCountry" name="variant3_returnCountry">
+            <label for="variant3_returnDays">Variant 3 Return Days:</label>
+            <input type="text" id="variant3_returnDays" name="variant3_returnDays">
+            <label for="variant3_returnMethod">Variant 3 Return Method:</label>
+            <input type="text" id="variant3_returnMethod" name="variant3_returnMethod">
+            <label for="variant3_returnFees">Variant 3 Return Fees:</label>
+            <input type="text" id="variant3_returnFees" name="variant3_returnFees">
+            <label for="variant3_refundType">Variant 3 Refund Type:</label>
+            <input type="text" id="variant3_refundType" name="variant3_refundType">
+            <label for="variant3_acceptedPaymentMethod">Variant 3 Accepted Payment Method:</label>
+            <input type="text" id="variant3_acceptedPaymentMethod" name="variant3_acceptedPaymentMethod">
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 5: Miscellaneous -->
+      <div class="step" id="step-5" style="display:none;">
+        <div class="form-row">
+          <div class="form-col">
+            <label for="certifications">Certifications:</label>
+            <input type="text" id="certifications" name="certifications">
+            <label for="award">Award:</label>
+            <input type="text" id="award" name="award">
+            <label for="thumbnailUrl">Thumbnail URL:</label>
+            <input type="text" id="thumbnailUrl" name="thumbnailUrl">
+          </div>
+          <div class="form-col">
+            <label for="mainEntityOfPage">Main Entity Of Page:</label>
+            <input type="text" id="mainEntityOfPage" name="mainEntityOfPage">
+            <label for="inLanguage">In Language:</label>
+            <input type="text" id="inLanguage" name="inLanguage">
+            <label for="countryOfOrigin">Country Of Origin:</label>
+            <input type="text" id="countryOfOrigin" name="countryOfOrigin">
+          </div>
+        </div>
+      </div>
+      <div class="form-buttons">
+        <button type="button" id="prevBtn" disabled>Previous</button>
+        <button type="button" id="nextBtn">Next</button>
+        <button type="submit" id="submitBtn" style="display:none;">Submit & Download CSV</button>
+      </div>
+      <div class="step-indicator">
+        <span id="step1" class="active">1</span>
+        <span id="step2">2</span>
+        <span id="step3">3</span>
+        <span id="step4">4</span>
+        <span id="step5">5</span>
+      </div>
+    </form>
+  </div>
+  <script>
+    const steps = [
+      document.getElementById('step-1'),
+      document.getElementById('step-2'),
+      document.getElementById('step-3'),
+      document.getElementById('step-4'),
+      document.getElementById('step-5')
+    ];
+    const indicators = [
+      document.getElementById('step1'),
+      document.getElementById('step2'),
+      document.getElementById('step3'),
+      document.getElementById('step4'),
+      document.getElementById('step5')
+    ];
+    let currentStep = 0;
+
+    function showStep(step) {
+      steps.forEach((s, idx) => s.style.display = idx === step ? '' : 'none');
+      indicators.forEach((ind, idx) => {
+        if (idx === step) ind.classList.add('active');
+        else ind.classList.remove('active');
+      });
+      document.getElementById('prevBtn').disabled = (step === 0);
+      document.getElementById('nextBtn').style.display = (step === steps.length - 1) ? 'none' : '';
+      document.getElementById('submitBtn').style.display = (step === steps.length - 1) ? '' : 'none';
+    }
+
+    document.getElementById('nextBtn').onclick = function() {
+      if (currentStep < steps.length - 1) {
+        currentStep++;
+        showStep(currentStep);
+      }
+    };
+    document.getElementById('prevBtn').onclick = function() {
+      if (currentStep > 0) {
+        currentStep--;
+        showStep(currentStep);
+      }
+    };
+
+    document.getElementById('megaForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        name: form.name.value,
+        description: form.description.value,
+        image_url: form.image_url.value,
+        brand: form.brand.value,
+        brand_logo: form.brand_logo.value,
+        sku: form.sku.value,
+        mpn: form.mpn.value,
+        gtin13: form.gtin13.value,
+        category: form.category.value,
+        ingredients: form.ingredients.value,
+        net_quantity: form.net_quantity.value,
+        discount: form.discount.value,
+        manufacturer_name: form.manufacturer_name.value,
+        manufacturer_logo: form.manufacturer_logo.value,
+        suitable_for: form.suitable_for.value,
+        production_date: form.production_date.value,
+        expiration_date: form.expiration_date.value,
+        variant1_name: form.variant1_name.value,
+        variant1_sku: form.variant1_sku.value,
+        variant1_gtin13: form.variant1_gtin13.value,
+        variant1_image: form.variant1_image.value,
+        variant1_actual_price: form.variant1_actual_price.value,
+        variant1_price: form.variant1_price.value,
+        variant1_url: form.variant1_url.value,
+        variant1_shippingCountry: form.variant1_shippingCountry.value,
+        variant1_shippingCurrency: form.variant1_shippingCurrency.value,
+        variant1_shippingValue: form.variant1_shippingValue.value,
+        variant1_returnCountry: form.variant1_returnCountry.value,
+        variant1_returnDays: form.variant1_returnDays.value,
+        variant1_returnMethod: form.variant1_returnMethod.value,
+        variant1_returnFees: form.variant1_returnFees.value,
+        variant1_refundType: form.variant1_refundType.value,
+        variant1_acceptedPaymentMethod: form.variant1_acceptedPaymentMethod.value,
+        variant2_name: form.variant2_name.value,
+        variant2_sku: form.variant2_sku.value,
+        variant2_gtin13: form.variant2_gtin13.value,
+        variant2_image: form.variant2_image.value,
+        variant2_actual_price: form.variant2_actual_price.value,
+        variant2_price: form.variant2_price.value,
+        variant2_url: form.variant2_url.value,
+        variant2_shippingCountry: form.variant2_shippingCountry.value,
+        variant2_shippingCurrency: form.variant2_shippingCurrency.value,
+        variant2_shippingValue: form.variant2_shippingValue.value,
+        variant2_returnCountry: form.variant2_returnCountry.value,
+        variant2_returnDays: form.variant2_returnDays.value,
+        variant2_returnMethod: form.variant2_returnMethod.value,
+        variant2_returnFees: form.variant2_returnFees.value,
+        variant2_refundType: form.variant2_refundType.value,
+        variant2_acceptedPaymentMethod: form.variant2_acceptedPaymentMethod.value,
+        variant3_name: form.variant3_name.value,
+        variant3_sku: form.variant3_sku.value,
+        variant3_gtin13: form.variant3_gtin13.value,
+        variant3_image: form.variant3_image.value,
+        variant3_actual_price: form.variant3_actual_price.value,
+        variant3_price: form.variant3_price.value,
+        variant3_url: form.variant3_url.value,
+        variant3_shippingCountry: form.variant3_shippingCountry.value,
+        variant3_shippingCurrency: form.variant3_shippingCurrency.value,
+        variant3_shippingValue: form.variant3_shippingValue.value,
+        variant3_returnCountry: form.variant3_returnCountry.value,
+        variant3_returnDays: form.variant3_returnDays.value,
+        variant3_returnMethod: form.variant3_returnMethod.value,
+        variant3_returnFees: form.variant3_returnFees.value,
+        variant3_refundType: form.variant3_refundType.value,
+        variant3_acceptedPaymentMethod: form.variant3_acceptedPaymentMethod.value,
+        certifications: form.certifications.value,
+        award: form.award.value,
+        thumbnailUrl: form.thumbnailUrl.value,
+        mainEntityOfPage: form.mainEntityOfPage.value,
+        inLanguage: form.inLanguage.value,
+        countryOfOrigin: form.countryOfOrigin.value
+      };
+      const header = Object.keys(data).join(',');
+      const row = Object.values(data).map(val => `"${(val || '').replace(/"/g, '""')}"`).join(',');
+      const csvContent = header + '\n' + row;
+      const blob = new Blob([csvContent], { type: 'text/csv' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'product_data.csv';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+
+    showStep(currentStep);
+  </script>
+</body>
+</html>
